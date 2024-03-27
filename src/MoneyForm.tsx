@@ -1,31 +1,48 @@
-import { useState } from "react";
+import { action, observable } from "mobx";
+import { observer } from "mobx-react";
+
+type FormState = {
+  total: number;
+  years: number;
+  salary: number;
+};
+
+const formState: FormState = observable({
+  total: 0,
+  years: 0,
+  salary: 0,
+});
 
 function MoneyForm() {
-  const [total, setTotal] = useState<number>(0);
-  const [years, setYears] = useState(0);
-  const [salary, setSalary] = useState(0);
+  const calculateTotal = action((formState: FormState) => {
+    formState.total = formState.years * formState.salary;
+  });
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h3 style={{ marginBottom: 0 }}>Money Talks</h3>
-      <p>Total: {total}</p>
+      <p>Total: {formState.total}</p>
       <input
         type="number"
         placeholder="Years ..."
         style={{ height: "40px" }}
-        onChange={(e) => setYears(Number(e.target.value))}
+        onChange={action((e) => {
+          formState.years = Number(e.target.value);
+        })}
       />
       <input
         type="number"
         placeholder="Yearly salary ..."
         style={{ height: "40px" }}
-        onChange={(e) => setSalary(Number(e.target.value))}
+        onChange={action((e) => {
+          formState.salary = Number(e.target.value);
+        })}
       />
-      <button type="button" onClick={() => setTotal(years * salary)}>
+      <button type="button" onClick={() => calculateTotal(formState)}>
         Calculate total
       </button>
     </div>
   );
 }
 
-export default MoneyForm;
+export default observer(MoneyForm);
