@@ -1,7 +1,13 @@
-React JS Crash Course for Beginners - Build 4 Apps in 12 hours
----------------------------------------------------------------------------------------------------
-https://www.youtube.com/watch?v=tbvguOj8C-o
-8:59:37
+MobX Tutorial with React and Typescript  35:52
+---------------------------------------
+https://www.youtube.com/watch?v=ElgfQdq-Htk
+3:36
 
-- npx create-react-app snapchat-clone --template redux
+- yarn create react-app mobx-example --template typescript
 
+... move @testing-library and @types stuff in package.json from dependencies to devDependencies
+
+- yarn add mobx mobx-react
+- yarn add -D eslint @typescript-eslint/parser eslint-plugin-mobx
+
+... add and configure .eslintrc.js (3:05) ... https://www.npmjs.com/package/eslint-plugin-mobx
