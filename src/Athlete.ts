@@ -15,11 +15,18 @@ class Athlete {
       age: observable,
       teamHistory: true,
       wishHappyBirthday: action,
+      tradePlayer: action,
     });
   }
 
   wishHappyBirthday() {
     this.age++;
+  }
+
+  tradePlayer(team: string) {
+    this.teamHistory.length > 0
+      ? this.teamHistory.push(", " + team)
+      : this.teamHistory.push(team);
   }
 }
 
